@@ -2,6 +2,7 @@ import random
 import streamlit as st
 
 def get_range_for_difficulty(difficulty: str):
+    # FIXME: Logic breaks here - Hard (1-50) is a smaller range than Normal (1-100), so it is easier
     if difficulty == "Easy":
         return 1, 20
     if difficulty == "Normal":
@@ -30,6 +31,7 @@ def parse_guess(raw: str):
 
 
 def check_guess(guess, secret):
+    # FIXME: Logic breaks here - hint messages are backwards ("Too High" says "Go HIGHER!")
     if guess == secret:
         return "Win", "🎉 Correct!"
 
@@ -39,6 +41,7 @@ def check_guess(guess, secret):
         else:
             return "Too Low", "📉 Go LOWER!"
     except TypeError:
+        # FIXME: string fallback compares "9" > "50" lexicographically, giving wrong hints
         g = str(guess)
         if g == secret:
             return "Win", "🎉 Correct!"
@@ -93,6 +96,7 @@ if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
 if "attempts" not in st.session_state:
+    # FIXME: attempts starts at 1 but New Game resets to 0, so "attempts left" is off by one
     st.session_state.attempts = 1
 
 if "score" not in st.session_state:
@@ -132,6 +136,7 @@ with col3:
     show_hint = st.checkbox("Show hint", value=True)
 
 if new_game:
+    # FIXME: New Game does not reset status/score/history and ignores the difficulty range
     st.session_state.attempts = 0
     st.session_state.secret = random.randint(1, 100)
     st.success("New game started.")
@@ -155,6 +160,7 @@ if submit:
     else:
         st.session_state.history.append(guess_int)
 
+        # FIXME: Logic breaks here - secret is turned into a str on even attempts, so a correct guess can never win
         if st.session_state.attempts % 2 == 0:
             secret = str(st.session_state.secret)
         else:
