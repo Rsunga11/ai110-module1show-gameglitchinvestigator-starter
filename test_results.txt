@@ -1,0 +1,19 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\rsung\AI110\ai110-module1show-gameglitchinvestigator-starter\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rsung\AI110\ai110-module1show-gameglitchinvestigator-starter
+plugins: anyio-4.15.1
+collecting ... collected 10 items
+
+tests/test_game_logic.py::test_winning_guess PASSED                      [ 10%]
+tests/test_game_logic.py::test_guess_too_high PASSED                     [ 20%]
+tests/test_game_logic.py::test_guess_too_low PASSED                      [ 30%]
+tests/test_game_logic.py::test_too_high_hint_says_go_lower PASSED        [ 40%]
+tests/test_game_logic.py::test_too_low_hint_says_go_higher PASSED        [ 50%]
+tests/test_game_logic.py::test_numeric_comparison_not_string PASSED      [ 60%]
+tests/test_game_logic.py::test_parse_guess_valid_and_invalid PASSED      [ 70%]
+tests/test_game_logic.py::test_hard_range_is_wider_than_normal PASSED    [ 80%]
+tests/test_game_logic.py::test_wrong_guess_never_increases_score PASSED  [ 90%]
+tests/test_game_logic.py::test_win_score_has_floor PASSED                [100%]
+
+============================= 10 passed in 0.05s ==============================
